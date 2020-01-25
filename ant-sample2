@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<project name="TestNG Test" default="test1" basedir=".">
+
+<target name="test1">
+<echo>TestNG Test</echo>
+</target>
+
+</project>
