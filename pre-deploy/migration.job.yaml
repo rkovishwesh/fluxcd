@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: db-migration
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: migration
+        image: ghcr.io/org/my-app:v1.0.0
+        command:
+          - sh
+          - -c
+          - echo "starting db migration"
