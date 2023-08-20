@@ -6,7 +6,7 @@ metadata:
 spec:
   sourceRef:
     kind: GitRepository
-    name: my-app
+    name: flux-system
   path: "./pre-deploy/"
   interval: 60m
   timeout: 5m
