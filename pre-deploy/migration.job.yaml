@@ -8,7 +8,7 @@ spec:
       restartPolicy: Never
       containers:
       - name: migration
-        image: ghcr.io/org/my-app:v1.0.0
+        image: postgres
         command:
           - sh
           - -c
