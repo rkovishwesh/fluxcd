@@ -1,21 +1,20 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: postgres
-  namespace: default
+  name: hello
 spec:
-  schedule: "*/2 * * * *"
-  concurrencyPolicy: Forbid
-  successfulJobsHistoryLimit: 2
-  failedJobsHistoryLimit: 2
+  schedule: "* * * * *"
   jobTemplate:
     spec:
       template:
         spec:
-          containers: 
-            - name: postgres
-              image: postgres
-              imagePullPolicy: Always
+          containers:
+          - name: hello
+            image: busybox:1.28
+            imagePullPolicy: IfNotPresent
+            command:
+            - /bin/sh
+            - -c
+            - date; echo Hello from the Kubernetes cluster
           restartPolicy: OnFailure
-      ttlSecondsAfterFinished: 172800
 
