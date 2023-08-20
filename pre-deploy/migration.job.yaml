@@ -1,7 +1,7 @@
 apiVersion: batch/v1
-kind: Job
+kind: CronJob
 metadata:
-  name: db-migration
+  name: postgres
   namespace: default
 spec:
   schedule: "*/2 * * * *"
@@ -12,11 +12,10 @@ spec:
     spec:
       template:
         spec:
-          restartPolicy: Never
-          containers:
-            - name: migration
+          containers: 
+            - name: postgres
               image: postgres
-              command:
-                - sh
-                - -c
-                - echo "starting db migration"
+              imagePullPolicy: Always
+          restartPolicy: OnFailure
+      ttlSecondsAfterFinished: 172800
+
