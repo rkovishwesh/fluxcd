@@ -5,13 +5,18 @@ metadata:
   namespace: default
 spec:
   schedule: "*/2 * * * *"
-  template:
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 2
+  failedJobsHistoryLimit: 2
+  jobTemplate:
     spec:
-      restartPolicy: Never
-      containers:
-      - name: migration
-        image: postgres
-        command:
-          - sh
-          - -c
-          - echo "starting db migration"
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: migration
+              image: postgres
+              command:
+                - sh
+                - -c
+                - echo "starting db migration"
